@@ -48,7 +48,7 @@ class DataTransformation:
                 
                 steps=[
                     ("imputer",SimpleImputer(strategy="most_frequent")),
-                    ("one_hot_encoder",OneHotEncoder()),
+                    ("one_hot_encoder",OneHotEncoder(handle_unknown="ignore")),
                     ("scaler",StandardScaler(with_mean=False))
                 ]
                 
@@ -56,6 +56,7 @@ class DataTransformation:
             
             logging.info("Numerical columns standard scaling completed")
             logging.info("Categorical columns encoding completed")
+           
             
             preprocessor = ColumnTransformer(
                 [

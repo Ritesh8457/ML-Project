@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome | Student Exam Performance Predictor</title>
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary-gradient: linear-gradient(135deg, #FF3E6C, #FF9800);
+            --secondary-gradient: linear-gradient(135deg, #4f46e5, #0ea5e9);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 3D Rotating Sphere Background */
+        body {
+            perspective: 1200px;
+        }
+
+        .bg-3d-scene {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            z-index: -1;
+            transform-style: preserve-3d;
+            animation: rotate3d 25s linear infinite;
+        }
+
+        .ring {
+            position: absolute;
+            top: -600px;
+            left: -600px;
+            width: 1200px;
+            height: 1200px;
+            border-radius: 50%;
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 80px rgba(99, 102, 241, 0.15), inset 0 0 80px rgba(236, 72, 153, 0.15);
+        }
+
+        .ring:nth-child(1) { transform: rotateY(0deg) rotateX(15deg); }
+        .ring:nth-child(2) { transform: rotateY(40deg) rotateX(30deg); }
+        .ring:nth-child(3) { transform: rotateY(80deg) rotateX(45deg); }
+        .ring:nth-child(4) { transform: rotateY(120deg) rotateX(60deg); }
+        .ring:nth-child(5) { transform: rotateY(160deg) rotateX(75deg); }
+        .ring:nth-child(6) { transform: rotateY(200deg) rotateX(90deg); }
+        .ring:nth-child(7) { transform: rotateY(240deg) rotateX(105deg); }
+        .ring:nth-child(8) { transform: rotateY(280deg) rotateX(120deg); }
+        .ring:nth-child(9) { transform: rotateY(320deg) rotateX(135deg); }
+
+        @keyframes rotate3d {
+            0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+        }
+
+        /* Hero Content */
+        .hero-container {
+            text-align: center;
+            z-index: 10;
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 4rem 3rem;
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            max-width: 800px;
+            width: 90%;
+            animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            color: #38bdf8;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.1);
+        }
+
+        .hero-container h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            letter-spacing: -1px;
+        }
+
+        .hero-container h1 span.gradient-text-1 {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-container h1 span.gradient-text-2 {
+            background: var(--secondary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-container p {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 500;
+        }
+
+        /* Action Buttons */
+        .btn-container {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 2.5rem;
+            background: var(--secondary-gradient);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(79, 70, 229, 0.7);
+        }
+
+        .btn-primary:active {
+            transform: translateY(1px);
+        }
+
+        .btn-icon {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover .btn-icon {
+            transform: translateX(6px);
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-3d-scene">
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+    </div>
+
+    <div class="hero-container">
+        <div class="badge">Machine Learning Driven</div>
+        <h1>Student<br><span class="gradient-text-1">Exam Performance</span><br><span class="gradient-text-2">Predictor</span></h1>
+        <p>Unlock insights into academic success. Use advanced data analytics to predict student mathematics performance based on key demographic indicators.</p>
+        
+        <div class="btn-container">
+            <!-- Link this to your Flask predict/home route that renders home.html -->
+            <a href="/predictdata" class="btn-primary">
+                Get Started
+                <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>
